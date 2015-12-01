@@ -78,12 +78,11 @@
 		}
 		
 		base.get_percentage = function () {
-			return this.options.selected / this.options.cells;
+			return calcPercent(this.options.selected, this.options.cells);
 		}
 		
 		base.get_percentageText = function (decimals) {
-			if(typeof(decimals) === "undefined") decimals = 2
-			return parseFloat(parseFloat(base.options.selected / base.options.cells * 100).toFixed(decimals)) + "%";
+			return calcPercentText(this.options.selected, this.options.cells, decimals);
 		}
 		
 		base.resize = function () {
@@ -96,6 +95,14 @@
 			});
 		}
 		
+		var calcPercent = function(x, y){
+			return x / y;
+		}
+		var calcPercentText = function(x, y, d){
+			if(typeof(d) === "undefined") d = 0
+			return Number(calcPercent(x * 100, y).toFixed(d)) + "%";
+		}
+		
         base.init(options);
 		
 		var resz;
@@ -103,7 +110,6 @@
 			clearTimeout(resz);
 			resz = setTimeout(function () { base.resize() }, 50);
 		});
-		return base;
     };
     
     $.boxPortionPicker.defaultOptions = {
@@ -128,7 +134,7 @@
     
     $.fn.boxPortionPicker = function(options){
         return this.each(function(){
-            return (new $.boxPortionPicker(this, options));
+            (new $.boxPortionPicker(this, options));
         });
     };
     
