@@ -31,6 +31,7 @@
 				if(j++ == o.columns && o.addBreaks) j=1, b.$el.append($("<br />"));
 				var c = cell.clone(true).attr("data-num", (i+1));
 				c.html(c.html().replace("{0}", (i+1)));
+				if(o.cellHtml.indexOf("{1}") > -1) c.html(c.html().replace("{1}", calcPercentText((i+1), o.cells)));
 				b.$el.append(c);
 			}
 			
