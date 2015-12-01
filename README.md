@@ -1,6 +1,8 @@
 # BoxPortionPicker.js
 JQuery plugin that allows portions to be selected visually using boxes.
 
+Check out this jsfiddle for a working example: http://jsfiddle.net/wpatter6/1sxbjfj2/
+
 Here is the quick and dirty list of options that can be passed in during initialization and their defaults:
 
 		addBreaks: true,
@@ -23,8 +25,8 @@ Here is the quick and dirty list of options that can be passed in during initial
 
 And here are methods that can be accessed via $(element).data("tableMultiPicker")
 
-      selectCell(num, triggerEvent);
-      clearSelection(triggerEvent);
-      get_selected();
-      get_percentage();
-      get_percentageText();
+		selectCell(num, triggerEvent);
+		clearSelection(triggerEvent);
+		get_selected();
+		get_percentage();
+		get_percentageText();
