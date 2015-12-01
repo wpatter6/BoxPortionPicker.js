@@ -22,7 +22,7 @@
 				"background-color": o.unselectedColor,
 				"display": "inline-block",
 				"cursor": "pointer"
-			}).css(o.cellCss).html(o.html).click(function () {
+			}).css(o.cellCss).html(o.cellHtml).click(function () {
 				b.selectCell($(this).attr("data-num"));
 			});
 			
@@ -107,23 +107,23 @@
     };
     
     $.boxPortionPicker.defaultOptions = {
-        cells: 4,
-		cellMargin: 1,
-		maxCellWidth: 500,
-		minCellWidth: 5,
-		maxCellHeight: 500,
-		minCellHeight: 5,
-		unselectedColor: "#BBE6BB",
-		selectedColor: "#88CC00",
-		selected:0,
-		columns: 0,
-		clickSelectedCellToClear: true,
 		addBreaks: true,
-		elementType: "div",
 		cellCss:{},
+		cellHtml: "&nbsp;",//use {0} to insert the cell number into the html string
+		cellMargin: 1,
+        cells: 4,
+		clickSelectedCellToClear: true,
+		columns: 0,
+		elementType: "div",
+		maxCellHeight: 500,
+		maxCellWidth: 500,
+		minCellHeight: 5,
+		minCellWidth: 5,
+		selected: 0,//which item is selected by default
 		selectedClass: null,
+		selectedColor: "#88CC00",
 		unselectedClass: null,
-		html: "&nbsp;"//use {0} to insert the cell number into the html string
+		unselectedColor: "#BBE6BB"
     };
     
     $.fn.boxPortionPicker = function(options){
