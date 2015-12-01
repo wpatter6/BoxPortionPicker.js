@@ -23,7 +23,7 @@ Here is the quick and dirty list of options that can be passed in during initial
 		unselectedClass: null,
 		unselectedColor: "#BBE6BB"
 
-And here are methods that can be accessed via $(element).data("tableMultiPicker")
+And here are methods that can be accessed via $(element).data("boxPortionPicker")
 
 		selectCell(num, triggerEvent);
 		clearSelection(triggerEvent);
