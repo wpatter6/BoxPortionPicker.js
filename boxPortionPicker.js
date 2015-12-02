@@ -11,8 +11,10 @@
             var o = this.options = $.extend({},$.boxPortionPicker.defaultOptions, opt), m = (!isNaN(o.cellMargin) ? o.cellMargin : parseInt(o.cellMargin.replace("px", "")));
 			this.options.cellMargin = m;
 			if((o.columns||0) < 1) o.columns = Math.ceil(Math.sqrt(o.cells));
-			var d = Math.min(b.$el.innerWidth()-(b.$el.innerWidth()/8), b.$el.innerHeight()) / Math.ceil(o.cells / o.columns) - m;
 			
+			var d = getBoxSize(b.$el.innerWidth(), b.$el.innerHeight(), o.cells, o.columns, m);// Math.min((b.$el.innerWidth()-(b.$el.innerWidth()/8)) / o.columns, b.$el.innerHeight() / Math.ceil(o.cells / o.columns)) - m;
+			
+			console.log(Math.ceil(o.cells / o.columns));
 			b.$el.css("line-height", Math.ceil(d + m) + "px");
 			
 			var cell = $("<"+o.elementType+"></"+o.elementType+">").css({
@@ -87,13 +89,18 @@
 		}
 		
 		base.resize = function () {
-			var o = this.options, w = this.$el.innerWidth(), d = Math.min(w-(w/8), this.$el.innerHeight()) / Math.ceil(o.cells / o.columns) - o.cellMargin;
+			var o = this.options, w = this.$el.innerWidth(), 
+				d=getBoxSize(this.$el.innerWidth(), this.$el.innerHeight(), o.cells, o.columns, o.cellMargin); //d = Math.min(w-(w/8), this.$el.innerHeight()) / Math.ceil(o.cells / o.columns) - o.cellMargin;
 			
 			this.$el.css("line-height", Math.ceil(d + o.cellMargin) + "px");
 			this.$el.children(o.elementType+"[data-num]").css({
 				"width": Math.max(Math.min(d, o.maxCellWidth), o.minCellWidth) + "px", 
 				"height": Math.max(Math.min(d, o.maxCellHeight), o.minCellHeight) + "px"				
 			});
+		}
+		
+		var getBoxSize = function (w, h, n, c, m){
+			return Math.min(w/c, h/Math.ceil(n/c))-m;
 		}
 		
 		var calcPercent = function(x, y){
